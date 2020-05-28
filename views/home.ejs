@@ -1,0 +1,16 @@
+<%- include("partials/header"); -%>
+
+<h1>Home</h1>
+<p>Welcome to the Daily Journal site. This site allows you to create and publish blogs that will be displayed on this (Home) page. Click on the 'Compose' menu option to write and publish a blog.</p>
+
+<% blogsArray.forEach((blog) => { %>
+  <div class="blog-container">
+    <h1><%= blog.title %></h1>
+    <form action="/deleteBlog" method="post">
+          <p><%= `${blog.content.substring(0, 99)} ...` %> <a href="/posts/<%= blog._id %>">Read more</a></p>
+          <input type="checkbox" name="deleteBlogID" value="<%= blog._id %>" onClick="this.form.submit()"><span class="ref-font"> Check this box to DELETE blog</span></input>
+      </form>
+  </div>
+<%})%>
+
+<%- include("partials/footer"); -%>
